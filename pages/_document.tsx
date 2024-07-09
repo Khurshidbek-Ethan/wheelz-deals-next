@@ -8,7 +8,7 @@ export default function Document() {
 				<link rel="icon" type="image/png" href="/img/logo/favicon.svg" />
 
 				{/* SEO */}
-				<meta name="keyword" content={'nestar, nestar.uz, devex mern, mern nestjs fullstack'} />
+				<meta name="keyword" content={'wheelz, wheels-deals.uz, wheelz-dels,devex mern, mern nestjs fullstack'} />
 				<meta
 					name={'description'}
 					content={
