@@ -2,14 +2,14 @@ import { NextPage } from 'next';
 import useDeviceDetect from '../libs/hooks/useDeviceDetect';
 import withLayoutMain from '../libs/components/layout/LayoutHome';
 import CommunityBoards from '../libs/components/homepage/CommunityBoards';
-import PopularProperties from '../libs/components/homepage/PopularProperties';
-import TopAgents from '../libs/components/homepage/TopAgents';
 import Events from '../libs/components/homepage/Events';
-import TrendProperties from '../libs/components/homepage/TrendProperties';
-import TopProperties from '../libs/components/homepage/TopProperties';
 import { Stack } from '@mui/material';
 import Advertisement from '../libs/components/homepage/Advertisement';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import TrendVehicles from '../libs/components/homepage/TrendVehicles';
+import PopularVehicles from '../libs/components/homepage/PopularVehicles';
+import TopVehicles from '../libs/components/homepage/TopVehicles';
+import Topdealers from '../libs/components/homepage/TopDealers';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -23,21 +23,21 @@ const Home: NextPage = () => {
 	if (device === 'mobile') {
 		return (
 			<Stack className={'home-page'}>
-				<TrendProperties />
-				<PopularProperties />
+				<TrendVehicles />
+				<PopularVehicles />
 				<Advertisement />
-				<TopProperties />
-				<TopAgents />
+				<TopVehicles />
+				<Topdealers />
 			</Stack>
 		);
 	} else {
 		return (
 			<Stack className={'home-page'}>
-				<TrendProperties />
-				<PopularProperties />
+				<TrendVehicles />
+				<PopularVehicles />
 				<Advertisement />
-				<TopProperties />
-				<TopAgents />
+				<TopVehicles />
+				<Topdealers />
 				<Events />
 				<CommunityBoards />
 			</Stack>

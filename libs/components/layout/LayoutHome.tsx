@@ -31,8 +31,8 @@ const withLayoutMain = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>wheelz-deals</title>
+						<meta name={'title'} content={`wheelz-deals`} />
 					</Head>
 					<Stack id="mobile-wrap">
 						<Stack id={'top'}>
@@ -53,8 +53,8 @@ const withLayoutMain = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>wheelz-deals</title>
+						<meta name={'title'} content={`wheelz-deals`} />
 					</Head>
 					<Stack id="pc-wrap">
 						<Stack id={'top'}>
@@ -64,7 +64,7 @@ const withLayoutMain = (Component: any) => {
 						<Stack className={'header-main'}>
 							<FiberContainer />
 							<Stack className={'container'}>
-								<HeaderFilter />
+								{/* <HeaderFilter /> */}
 							</Stack>
 						</Stack>
 
