@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import HeaderFilter from '../homepage/HeaderFilter';
 
 const withLayoutBasic = (Component: any) => {
 	return (props: any) => {
@@ -121,6 +122,7 @@ const withLayoutBasic = (Component: any) => {
 					<Stack id="pc-wrap">
 						<Stack id={'top'}>
 							<Top />
+ 
 						</Stack>
 
 						<Stack

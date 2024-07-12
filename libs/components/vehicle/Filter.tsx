@@ -38,8 +38,8 @@ const Filter = (props: FilterType) => {
 	const { searchFilter, setSearchFilter, initialInput } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const [VehicleLocation, setVehicleLocation] = useState<VehicleLocation[]>(Object.values(VehicleLocation));
-	const [VehicleType, setVehicleType] = useState<VehicleType[]>(Object.values(VehicleType));
+	const [vehicleLocation, setVehicleLocation] = useState<VehicleLocation[]>(Object.values(VehicleLocation));
+	const [vehicleType, setVehicleType] = useState<VehicleType[]>(Object.values(VehicleType));
 	const [searchText, setSearchText] = useState<string>('');
 	const [showMore, setShowMore] = useState<boolean>(false);
 
@@ -510,7 +510,7 @@ const Filter = (props: FilterType) => {
 							}
 						}}
 					>
-						{VehicleLocation.map((location: string) => {
+						{vehicleLocation.map((location: string) => {
 							return (
 								<Stack className={'input-box'} key={location}>
 									<Checkbox
@@ -532,7 +532,7 @@ const Filter = (props: FilterType) => {
 				</Stack>
 				<Stack className={'find-your-home'} mb={'30px'}>
 					<Typography className={'title'}>vehicle Type</Typography>
-					{VehicleType.map((type: string) => (
+					{vehicleType.map((type: string) => (
 						<Stack className={'input-box'} key={type}>
 							<Checkbox
 								id={type}

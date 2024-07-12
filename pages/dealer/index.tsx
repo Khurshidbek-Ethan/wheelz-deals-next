@@ -5,10 +5,11 @@ import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
 import { Stack, Box, Button, Pagination } from '@mui/material';
 import { Menu, MenuItem } from '@mui/material';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import dealerCard from '../../libs/components/common/dealerCard';
+
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Member } from '../../libs/types/member/member';
+import DealerCard from '../../libs/components/common/DealerCard';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -143,7 +144,7 @@ const dealerList: NextPage = ({ initialInput, ...props }: any) => {
 							</div>
 						) : (
 							dealers.map((dealer: Member) => {
-								return <dealerCard dealer={dealer} key={dealer._id} />;
+								return <DealerCard dealer={dealer} key={dealer._id} />;
 							})
 						)}
 					</Stack>

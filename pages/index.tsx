@@ -10,6 +10,7 @@ import TrendVehicles from '../libs/components/homepage/TrendVehicles';
 import PopularVehicles from '../libs/components/homepage/PopularVehicles';
 import TopVehicles from '../libs/components/homepage/TopVehicles';
 import Topdealers from '../libs/components/homepage/TopDealers';
+import HeaderFilter from '../libs/components/homepage/HeaderFilter';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
 	} else {
 		return (
 			<Stack className={'home-page'}>
+				<HeaderFilter />
 				<TrendVehicles />
 				<PopularVehicles />
 				<Advertisement />
