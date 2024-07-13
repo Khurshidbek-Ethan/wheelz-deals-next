@@ -45,15 +45,14 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const [searchFilter, setSearchFilter] = useState<VehiclesInquiry>(initialInput);
 	const locationRef: any = useRef();
 	const typeRef: any = useRef();
-	const roomsRef: any = useRef();
 	const router = useRouter();
 	const [openAdvancedFilter, setOpenAdvancedFilter] = useState(false);
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
-	const [openRooms, setOpenRooms] = useState(false);
+
 	const [vehicleLocation, setVehicleLocation] = useState<VehicleLocation[]>(Object.values(VehicleLocation));
 	const [vehicleType, setVehicleType] = useState<VehicleType[]>(Object.values(VehicleType));
-	const [yearCheck, setYearCheck] = useState({ start: 1970, end: thisYear });
+
 	const [optionCheck, setOptionCheck] = useState('all');
 
 	/** LIFECYCLES **/
@@ -67,9 +66,9 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				setOpenType(false);
 			}
 
-			if (!roomsRef?.current?.contains(event.target)) {
-				setOpenRooms(false);
-			}
+			// if (!roomsRef?.current?.contains(event.target)) {
+			// 	setOpenRooms(false);
+			// }
 		};
 
 		document.addEventListener('mousedown', clickHandler);
@@ -82,31 +81,31 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	/** HANDLERS **/
 	const advancedFilterHandler = (status: boolean) => {
 		setOpenLocation(false);
-		setOpenRooms(false);
+		// setOpenRooms(false);
 		setOpenType(false);
 		setOpenAdvancedFilter(status);
 	};
 
 	const locationStateChangeHandler = () => {
 		setOpenLocation((prev) => !prev);
-		setOpenRooms(false);
+		// setOpenRooms(false);
 		setOpenType(false);
 	};
 
 	const typeStateChangeHandler = () => {
 		setOpenType((prev) => !prev);
 		setOpenLocation(false);
-		setOpenRooms(false);
+		// setOpenRooms(false);
 	};
 
-	const roomStateChangeHandler = () => {
-		setOpenRooms((prev) => !prev);
-		setOpenType(false);
-		setOpenLocation(false);
-	};
+	// const roomStateChangeHandler = () => {
+	// 	// setOpenRooms((prev) => !prev);
+	// 	setOpenType(false);
+	// 	setOpenLocation(false);
+	// };
 
 	const disableAllStateHandler = () => {
-		setOpenRooms(false);
+		// setOpenRooms(false);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
@@ -129,159 +128,159 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		[searchFilter],
 	);
 
-	const VehicleTypeSelectHandler = useCallback(
-		async (value: any) => {
-			try {
-				setSearchFilter({
-					...searchFilter,
-					search: {
-						...searchFilter.search,
-						typeList: [value],
-					},
-				});
-				roomStateChangeHandler();
-			} catch (err: any) {
-				console.log('ERROR, VehicleTypeSelectHandler:', err);
-			}
-		},
-		[searchFilter],
-	);
+	// const VehicleTypeSelectHandler = useCallback(
+	// 	async (value: any) => {
+	// 		try {
+	// 			setSearchFilter({
+	// 				...searchFilter,
+	// 				search: {
+	// 					...searchFilter.search,
+	// 					typeList: [value],
+	// 				},
+	// 			});
+	// 			// roomStateChangeHandler();
+	// 		} catch (err: any) {
+	// 			console.log('ERROR, VehicleTypeSelectHandler:', err);
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
-	const vehicleRoomSelectHandler = useCallback(
-		async (value: any) => {
-			try {
-				setSearchFilter({
-					...searchFilter,
-					search: {
-						...searchFilter.search,
-						roomsList: [value],
-					},
-				});
-				disableAllStateHandler();
-			} catch (err: any) {
-				console.log('ERROR, vehicleRoomSelectHandler:', err);
-			}
-		},
-		[searchFilter],
-	);
+	// const vehicleRoomSelectHandler = useCallback(
+	// 	async (value: any) => {
+	// 		try {
+	// 			setSearchFilter({
+	// 				...searchFilter,
+	// 				search: {
+	// 					...searchFilter.search,
+	// 					roomsList: [value],
+	// 				},
+	// 			});
+	// 			disableAllStateHandler();
+	// 		} catch (err: any) {
+	// 			console.log('ERROR, vehicleRoomSelectHandler:', err);
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
-	const vehicleBedSelectHandler = useCallback(
-		async (number: Number) => {
-			try {
-				if (number != 0) {
-					if (searchFilter?.search?.bedsList?.includes(number)) {
-						setSearchFilter({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-								bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-							},
-						});
-					} else {
-						setSearchFilter({
-							...searchFilter,
-							search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-						});
-					}
-				} else {
-					delete searchFilter?.search.bedsList;
-					setSearchFilter({ ...searchFilter });
-				}
+	// const vehicleBedSelectHandler = useCallback(
+	// 	async (number: Number) => {
+	// 		try {
+	// 			if (number != 0) {
+	// 				if (searchFilter?.search?.bedsList?.includes(number)) {
+	// 					setSearchFilter({
+	// 						...searchFilter,
+	// 						search: {
+	// 							...searchFilter.search,
+	// 							bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
+	// 						},
+	// 					});
+	// 				} else {
+	// 					setSearchFilter({
+	// 						...searchFilter,
+	// 						search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
+	// 					});
+	// 				}
+	// 			} else {
+	// 				delete searchFilter?.search.bedsList;
+	// 				setSearchFilter({ ...searchFilter });
+	// 			}
 
-				console.log('vehicleBedSelectHandler:', number);
-			} catch (err: any) {
-				console.log('ERROR, vehicleBedSelectHandler:', err);
-			}
-		},
-		[searchFilter],
-	);
+	// 			console.log('vehicleBedSelectHandler:', number);
+	// 		} catch (err: any) {
+	// 			console.log('ERROR, vehicleBedSelectHandler:', err);
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
-	const vehicleOptionSelectHandler = useCallback(
-		async (e: any) => {
-			try {
-				const value = e.target.value;
-				setOptionCheck(value);
+	// const vehicleOptionSelectHandler = useCallback(
+	// 	async (e: any) => {
+	// 		try {
+	// 			const value = e.target.value;
+	// 			setOptionCheck(value);
 
-				if (value !== 'all') {
-					setSearchFilter({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							options: [value],
-						},
-					});
-				} else {
-					delete searchFilter.search.options;
-					setSearchFilter({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-						},
-					});
-				}
-			} catch (err: any) {
-				console.log('ERROR, vehicleOptionSelectHandler:', err);
-			}
-		},
-		[searchFilter],
-	);
+	// 			if (value !== 'all') {
+	// 				setSearchFilter({
+	// 					...searchFilter,
+	// 					search: {
+	// 						...searchFilter.search,
+	// 						options: [value],
+	// 					},
+	// 				});
+	// 			} else {
+	// 				delete searchFilter.search.options;
+	// 				setSearchFilter({
+	// 					...searchFilter,
+	// 					search: {
+	// 						...searchFilter.search,
+	// 					},
+	// 				});
+	// 			}
+	// 		} catch (err: any) {
+	// 			console.log('ERROR, vehicleOptionSelectHandler:', err);
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
-	const vehicleSquareHandler = useCallback(
-		async (e: any, type: string) => {
-			const value = e.target.value;
+	// const vehicleSquareHandler = useCallback(
+	// 	async (e: any, type: string) => {
+	// 		const value = e.target.value;
 
-			if (type == 'start') {
-				setSearchFilter({
-					...searchFilter,
-					search: {
-						...searchFilter.search,
-						// @ts-ignore
-						squaresRange: { ...searchFilter.search.squaresRange, start: parseInt(value) },
-					},
-				});
-			} else {
-				setSearchFilter({
-					...searchFilter,
-					search: {
-						...searchFilter.search,
-						// @ts-ignore
-						squaresRange: { ...searchFilter.search.squaresRange, end: parseInt(value) },
-					},
-				});
-			}
-		},
-		[searchFilter],
-	);
+	// 		if (type == 'start') {
+	// 			setSearchFilter({
+	// 				...searchFilter,
+	// 				search: {
+	// 					...searchFilter.search,
+	// 					// @ts-ignore
+	// 					squaresRange: { ...searchFilter.search.squaresRange, start: parseInt(value) },
+	// 				},
+	// 			});
+	// 		} else {
+	// 			setSearchFilter({
+	// 				...searchFilter,
+	// 				search: {
+	// 					...searchFilter.search,
+	// 					// @ts-ignore
+	// 					squaresRange: { ...searchFilter.search.squaresRange, end: parseInt(value) },
+	// 				},
+	// 			});
+	// 		}
+	// 	},
+	// 	[searchFilter],
+	// );
 
-	const yearStartChangeHandler = async (event: any) => {
-		setYearCheck({ ...yearCheck, start: Number(event.target.value) });
+	// const yearStartChangeHandler = async (event: any) => {
+	// 	setYearCheck({ ...yearCheck, start: Number(event.target.value) });
 
-		setSearchFilter({
-			...searchFilter,
-			search: {
-				...searchFilter.search,
-				periodsRange: { start: Number(event.target.value), end: yearCheck.end },
-			},
-		});
-	};
+	// 	setSearchFilter({
+	// 		...searchFilter,
+	// 		search: {
+	// 			...searchFilter.search,
+	// 			periodsRange: { start: Number(event.target.value), end: yearCheck.end },
+	// 		},
+	// 	});
+	// };
 
-	const yearEndChangeHandler = async (event: any) => {
-		setYearCheck({ ...yearCheck, end: Number(event.target.value) });
+	// const yearEndChangeHandler = async (event: any) => {
+	// 	setYearCheck({ ...yearCheck, end: Number(event.target.value) });
 
-		setSearchFilter({
-			...searchFilter,
-			search: {
-				...searchFilter.search,
-				periodsRange: { start: yearCheck.start, end: Number(event.target.value) },
-			},
-		});
-	};
+	// 	setSearchFilter({
+	// 		...searchFilter,
+	// 		search: {
+	// 			...searchFilter.search,
+	// 			periodsRange: { start: yearCheck.start, end: Number(event.target.value) },
+	// 		},
+	// 	});
+	// };
 
-	const resetFilterHandler = () => {
-		setSearchFilter(initialInput);
-		setOptionCheck('all');
-		setYearCheck({ start: 1970, end: thisYear });
-	};
+	// const resetFilterHandler = () => {
+	// 	setSearchFilter(initialInput);
+	// 	setOptionCheck('all');
+	// 	setYearCheck({ start: 1970, end: thisYear });
+	// };
 
 	const pushSearchHandler = async () => {
 		try {
@@ -293,17 +292,17 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			if (searchFilter?.search?.roomsList?.length == 0) {
-				delete searchFilter.search.roomsList;
-			}
+			// if (searchFilter?.search?.roomsList?.length == 0) {
+			// 	delete searchFilter.search.roomsList;
+			// }
 
-			if (searchFilter?.search?.options?.length == 0) {
-				delete searchFilter.search.options;
-			}
+			// if (searchFilter?.search?.options?.length == 0) {
+			// 	delete searchFilter.search.options;
+			// }
 
-			if (searchFilter?.search?.bedsList?.length == 0) {
-				delete searchFilter.search.bedsList;
-			}
+			// if (searchFilter?.search?.bedsList?.length == 0) {
+			// 	delete searchFilter.search.bedsList;
+			// }
 
 			await router.push(
 				`/vehicle?input=${JSON.stringify(searchFilter)}`,
@@ -329,16 +328,10 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('vehicle type')} </span>
 							<ExpandMoreIcon />
 						</Box>
-						<Box className={`box ${openRooms ? 'on' : ''}`} onClick={roomStateChangeHandler}>
-							<span>
-								{searchFilter?.search?.roomsList ? `${searchFilter?.search?.roomsList[0]} rooms}` : t('Rooms')}
-							</span>
-							<ExpandMoreIcon />
-						</Box>
 					</Stack>
 					<Stack className={'search-box-other'}>
 						<Box className={'advanced-filter'} onClick={() => advancedFilterHandler(true)}>
-							<img src="/img/icons/tune.svg" alt="" />
+							<img src="/img/icons/menu-vertical.svg" alt="" />
 							<span>{t('Advanced')}</span>
 						</Box>
 						<Box className={'search-btn'} onClick={pushSearchHandler}>
@@ -360,6 +353,10 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 
 					<div className={`filter-type ${openType ? 'on' : ''}`} ref={typeRef}>
 						{vehicleType.map((type: string) => {
+							function VehicleTypeSelectHandler(type: string): void {
+								throw new Error('Function not implemented.');
+							}
+
 							return (
 								<div
 									style={{ backgroundImage: `url(/img/banner/types/${type.toLowerCase()}.webp)` }}
@@ -372,15 +369,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						})}
 					</div>
 
-					<div className={`filter-rooms ${openRooms ? 'on' : ''}`} ref={roomsRef}>
-						{[1, 2, 3, 4, 5].map((room: number) => {
-							return (
-								<span onClick={() => vehicleRoomSelectHandler(room)} key={room}>
-									{room} room{room > 1 ? 's' : ''}
-								</span>
-							);
-						})}
-					</div>
+					
 				</Stack>
 
 				{/* ADVANCED FILTER MODAL */}
@@ -416,144 +405,16 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<Divider sx={{ mt: '30px', mb: '35px' }} />
 							<div className={'middle'}>
 								<div className={'row-box'}>
+									
 									<div className={'box'}>
-										<span>bedrooms</span>
-										<div className={'inside'}>
-											<div
-												className={`room ${!searchFilter?.search?.bedsList ? 'active' : ''}`}
-												onClick={() => vehicleBedSelectHandler(0)}
-											>
-												Any
-											</div>
-											{[1, 2, 3, 4, 5].map((bed: number) => (
-												<div
-													className={`room ${searchFilter?.search?.bedsList?.includes(bed) ? 'active' : ''}`}
-													onClick={() => vehicleBedSelectHandler(bed)}
-													key={bed}
-												>
-													{bed == 0 ? 'Any' : bed}
-												</div>
-											))}
-										</div>
-									</div>
-									<div className={'box'}>
-										<span>options</span>
-										<div className={'inside'}>
-											<FormControl>
-												<Select
-													value={optionCheck}
-													onChange={vehicleOptionSelectHandler}
-													displayEmpty
-													inputProps={{ 'aria-label': 'Without label' }}
-												>
-													<MenuItem value={'all'}>All Options</MenuItem>
-													<MenuItem value={'vehicleBarter'}>Barter</MenuItem>
-													<MenuItem value={'vehicleRent'}>Rent</MenuItem>
-												</Select>
-											</FormControl>
-										</div>
 									</div>
 								</div>
-								<div className={'row-box'} style={{ marginTop: '44px' }}>
-									<div className={'box'}>
-										<span>Year Built</span>
-										<div className={'inside space-between align-center'}>
-											<FormControl sx={{ width: '122px' }}>
-												<Select
-													value={yearCheck.start.toString()}
-													onChange={yearStartChangeHandler}
-													displayEmpty
-													inputProps={{ 'aria-label': 'Without label' }}
-													MenuProps={MenuProps}
-												>
-													{vehicleYears?.slice(0)?.map((year: number) => (
-														<MenuItem value={year} disabled={yearCheck.end <= year} key={year}>
-															{year}
-														</MenuItem>
-													))}
-												</Select>
-											</FormControl>
-											<div className={'minus-line'}></div>
-											<FormControl sx={{ width: '122px' }}>
-												<Select
-													value={yearCheck.end.toString()}
-													onChange={yearEndChangeHandler}
-													displayEmpty
-													inputProps={{ 'aria-label': 'Without label' }}
-													MenuProps={MenuProps}
-												>
-													{vehicleYears
-														?.slice(0)
-														.reverse()
-														.map((year: number) => (
-															<MenuItem value={year} disabled={yearCheck.start >= year} key={year}>
-																{year}
-															</MenuItem>
-														))}
-												</Select>
-											</FormControl>
-										</div>
-									</div>
-									<div className={'box'}>
-										<span>square meter</span>
-										<div className={'inside space-between align-center'}>
-											<FormControl sx={{ width: '122px' }}>
-												<Select
-													value={searchFilter?.search?.squaresRange?.start}
-													onChange={(e: any) => vehicleSquareHandler(e, 'start')}
-													displayEmpty
-													inputProps={{ 'aria-label': 'Without label' }}
-													MenuProps={MenuProps}
-												>
-													{vehicleSquare.map((square: number) => (
-														<MenuItem
-															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
-															key={square}
-														>
-															{square}
-														</MenuItem>
-													))}
-												</Select>
-											</FormControl>
-											<div className={'minus-line'}></div>
-											<FormControl sx={{ width: '122px' }}>
-												<Select
-													value={searchFilter?.search?.squaresRange?.end}
-													onChange={(e: any) => vehicleSquareHandler(e, 'end')}
-													displayEmpty
-													inputProps={{ 'aria-label': 'Without label' }}
-													MenuProps={MenuProps}
-												>
-													{vehicleSquare.map((square: number) => (
-														<MenuItem
-															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
-															key={square}
-														>
-															{square}
-														</MenuItem>
-													))}
-												</Select>
-											</FormControl>
-										</div>
-									</div>
+								
+									
 								</div>
-							</div>
+
 							<Divider sx={{ mt: '60px', mb: '18px' }} />
-							<div className={'bottom'}>
-								<div onClick={resetFilterHandler}>
-									<img src="/img/icons/reset.svg" alt="" />
-									<span>Reset all filters</span>
-								</div>
-								<Button
-									startIcon={<img src={'/img/icons/search.svg'} />}
-									className={'search-btn'}
-									onClick={pushSearchHandler}
-								>
-									Search
-								</Button>
-							</div>
+							
 						</Box>
 					</Box>
 				</Modal>

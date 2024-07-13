@@ -3,7 +3,7 @@ import useDeviceDetect from '../libs/hooks/useDeviceDetect';
 import withLayoutMain from '../libs/components/layout/LayoutHome';
 import CommunityBoards from '../libs/components/homepage/CommunityBoards';
 import Events from '../libs/components/homepage/Events';
-import { Stack } from '@mui/material';
+import { Divider, Stack } from '@mui/material';
 import Advertisement from '../libs/components/homepage/Advertisement';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import TrendVehicles from '../libs/components/homepage/TrendVehicles';
@@ -35,6 +35,7 @@ const Home: NextPage = () => {
 		return (
 			<Stack className={'home-page'}>
 				<HeaderFilter />
+				<Divider sx={{ mt: '15px', mb: '17px', color: '#161515' }} />
 				<TrendVehicles />
 				<PopularVehicles />
 				<Advertisement />

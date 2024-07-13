@@ -116,19 +116,21 @@
 		}
 		.search-box {
 			position: relative;
-			margin-top: 56px;
+			margin-top: 13px;
+			margin-left: 10px;
+			margin-right: 10px;
 			padding: 16px 29px;
-			width: 1094px;
+			width: 2220px;
 			height: 96px;
 			display: flex;
-			flex-direction: row;
+			flex-direction: row-reverse;
 			justify-content: space-between;
-			background: rgba(255, 255, 255, 0.28);
+			background: rgba(34, 33, 33, 0.28);
 			border-radius: 12px;
 			.select-box {
 				width: 712px;
 				display: flex;
-				flex-direction: row;
+				flex-direction: row-reverse;
 				justify-content: space-between;
 				.box {
 					padding: 24px 22px;
@@ -167,8 +169,8 @@
 					align-items: center;
 					img {
 						margin-right: 10px;
-						width: 25px;
-						height: 22px;
+						width: 55px;
+						height: 222px;
 						cursor: pointer;
 					}
 					span {
