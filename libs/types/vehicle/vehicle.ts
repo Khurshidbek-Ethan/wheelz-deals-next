@@ -1,27 +1,22 @@
-import { VehicleLocation, VehicleStatus, VehicleType } from '../../enums/vehicle.enum';
+import { VehicleBrand, VehicleColor, VehicleLocation, VehicleOil, VehicleStatus, VehicleType } from '../../enums/vehicle.enum';
+import { MeLiked } from '../like/like';
 import { Member } from '../member/member';
-
-export interface MeLiked {
-	memberId: string;
-	likeRefId: string;
-	myFavorite: boolean;
-}
 
 export interface TotalCounter {
 	total: number;
 }
 
-export interface vehicle {
+export interface Vehicle {
 	_id: string;
 	VehicleType: VehicleType;
 	vehicleStatus: VehicleStatus;
 	VehicleLocation: VehicleLocation;
+	vehicleBrand: VehicleBrand;
+	vehicleOil: VehicleOil;
+	vehicleColor: VehicleColor;
 	vehicleAddress: string;
 	vehicleTitle: string;
 	vehiclePrice: number;
-	vehicleSquare: number;
-	vehicleBeds: number;
-	vehicleRooms: number;
 	vehicleViews: number;
 	vehicleLikes: number;
 	vehicleComments: number;
@@ -42,6 +37,6 @@ export interface vehicle {
 }
 
 export interface Vehicles {
-	list: vehicle[];
+	list: Vehicle[];
 	metaCounter: TotalCounter[];
 }

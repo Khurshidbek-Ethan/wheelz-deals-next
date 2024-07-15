@@ -3,16 +3,17 @@ import { Stack, Box, Divider, Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { vehicle } from '../../types/vehicle/vehicle';
+
 import { REACT_API_URL } from '../../config';
 import { formatterStr } from '../../utils';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { useRouter } from 'next/router';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { Vehicle } from '../../types/vehicle/vehicle';
 
 interface vehicleBigCardProps {
-	vehicle: vehicle;
+	vehicle: Vehicle;
 }
 
 const vehicleBigCard = (props: vehicleBigCardProps) => {
@@ -51,15 +52,15 @@ const vehicleBigCard = (props: vehicleBigCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/bed.svg" alt="" />
-							<span>{vehicle?.vehicleBeds} bed</span>
+							{/* <span>{vehicle?.vehicleBeds} bed</span> */}
 						</div>
 						<div>
 							<img src="/img/icons/room.svg" alt="" />
-							<span>{vehicle?.vehicleRooms} rooms</span>
+							{/* <span>{vehicle?.vehicleRooms} rooms</span> */}
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
-							<span>{vehicle?.vehicleSquare} m2</span>
+							{/* <span>{vehicle?.vehicleSquare} m2</span> */}
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />

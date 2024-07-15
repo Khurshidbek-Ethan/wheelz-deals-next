@@ -1,20 +1,18 @@
-import { VehicleLocation, VehicleStatus, VehicleType } from '../../enums/vehicle.enum';
+import { VehicleBrand, VehicleColor, VehicleLocation, VehicleOil, VehicleStatus, VehicleType } from '../../enums/vehicle.enum';
 
-export interface vehicleUpdate {
+export interface VehicleUpdate {
 	_id: string;
-	VehicleType?: VehicleType;
+	vehicleType?: VehicleType;
 	vehicleStatus?: VehicleStatus;
-	VehicleLocation?: VehicleLocation;
+	vehicleLocation?: VehicleLocation;
+	vehicleBrand?: VehicleBrand;
+	vehicleOil?: VehicleOil;
+	vehicleColor?: VehicleColor;
 	vehicleAddress?: string;
 	vehicleTitle?: string;
 	vehiclePrice?: number;
-	vehicleSquare?: number;
-	vehicleBeds?: number;
-	vehicleRooms?: number;
 	vehicleImages?: string[];
 	vehicleDesc?: string;
-	vehicleBarter?: boolean;
-	vehicleRent?: boolean;
 	soldAt?: Date;
 	deletedAt?: Date;
 	constructedAt?: Date;

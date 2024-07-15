@@ -1,6 +1,8 @@
 import { MemberAuthType, MemberStatus, MemberType } from '../../enums/member.enum';
-import { MeLiked, TotalCounter } from '../vehicle/vehicle';
+
 import { MeFollowed } from '../follow/follow';
+import { MeLiked } from '../like/like';
+import { TotalCounter } from '../vehicle/vehicle';
 
 export interface Member {
 	_id: string;

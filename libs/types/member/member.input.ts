@@ -14,16 +14,16 @@ export interface LoginInput {
 	memberPassword: string;
 }
 
-interface AISearch {
+interface DISearch {
 	text?: string;
 }
 
-export interface dealersInquiry {
+export interface DealersInquiry {
 	page: number;
 	limit: number;
 	sort?: string;
 	direction?: Direction;
-	search: AISearch;
+	search: DISearch;
 }
 
 interface MISearch {

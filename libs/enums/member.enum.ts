@@ -1,6 +1,6 @@
 export enum MemberType {
 	USER = 'USER',
-	dealer = 'dealer',
+	DEALER = 'DEALER',
 	ADMIN = 'ADMIN',
 }
 

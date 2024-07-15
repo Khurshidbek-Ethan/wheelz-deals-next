@@ -179,7 +179,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						brandsList: [value],
+						brandList: [value],
 					},
 				});
 				oilStateChangeHandler();
@@ -198,7 +198,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						oilsList: [value],
+						oilList: [value],
 					},
 				});
 				disableAllStateHandler();
@@ -216,7 +216,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						colorsList: [value],
+						colorList: [value],
 					},
 				});
 				disableAllStateHandler();
@@ -237,16 +237,16 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			if (searchFilter?.search?.brandsList?.length == 0) {
-				delete searchFilter.search.brandsList;
+			if (searchFilter?.search?.brandList?.length == 0) {
+				delete searchFilter.search.brandList;
 			}
 
-			if (searchFilter?.search?.oilsList?.length == 0) {
-				delete searchFilter.search.oilsList;
+			if (searchFilter?.search?.oilList?.length == 0) {
+				delete searchFilter.search.oilList;
 			}
 
-			if (searchFilter?.search?.colorsList?.length == 0) {
-				delete searchFilter.search.colorsList;
+			if (searchFilter?.search?.colorList?.length == 0) {
+				delete searchFilter.search.colorList;
 			}
 
 			await router.push(
@@ -270,22 +270,22 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
-							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('vehicle type')} </span>
+							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Vehicles')} </span>
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openBrands ? 'on' : ''}`} onClick={brandStateChangeHandler}>
 							<span>
-								{searchFilter?.search?.brandsList ? `${searchFilter?.search?.brandsList[0]} brands}` : t('Brands')}
+								{searchFilter?.search?.brandList ? `${searchFilter?.search?.brandList[0]} brands}` : t('Brands')}
 							</span>
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openOil ? 'on' : ''}`} onClick={vehicleOilSelectHandler}>
-							<span>{searchFilter?.search?.oilsList ? `${searchFilter?.search?.oilsList[0]} oils}` : t('Oils')}</span>
+							<span>{searchFilter?.search?.oilList ? `${searchFilter?.search?.oilList[0]} oils}` : t('Oils')}</span>
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openColor ? 'on' : ''}`} onClick={vehicleColorSelectHandler}>
 							<span>
-								{searchFilter?.search?.openColor ? `${searchFilter?.search?.openColor[0]} color}` : t('Color')}
+								{searchFilter?.search?.colorList ? `${searchFilter?.search?.colorList[0]} color}` : t('Color')}
 							</span>
 							<ExpandMoreIcon />
 						</Box>
@@ -400,13 +400,9 @@ HeaderFilter.defaultProps = {
 		page: 1,
 		limit: 9,
 		search: {
-			// squaresRange: {
-			// 	start: 0,
-			// 	end: 500,
-			// },
 			pricesRange: {
 				start: 0,
-				end: 2000000,
+				end: 9000000,
 			},
 		},
 	},

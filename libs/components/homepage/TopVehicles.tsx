@@ -6,8 +6,9 @@ import EastIcon from '@mui/icons-material/East';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { VehiclesInquiry } from '../../types/vehicle/vehicle.input';
-import { vehicle } from '../../types/vehicle/vehicle';
+
 import TopVehicleCard from './TopVehicleCard'
+import { Vehicle } from '../../types/vehicle/vehicle';
 
 
 interface TopVehiclesProps {
@@ -17,7 +18,7 @@ interface TopVehiclesProps {
 const TopVehicles = (props: TopVehiclesProps) => {
 	const { initialInput } = props;
 	const device = useDeviceDetect();
-	const [topVehicles, setTopVehicles] = useState<vehicle[]>([]);
+	const [topVehicles, setTopVehicles] = useState<Vehicle[]>([]);
 
 	/** APOLLO REQUESTS **/
 	/** HANDLERS **/
@@ -37,7 +38,7 @@ const TopVehicles = (props: TopVehiclesProps) => {
 							spaceBetween={15}
 							modules={[Autoplay]}
 						>
-							{topVehicles.map((vehicle: vehicle) => {
+							{topVehicles.map((vehicle: Vehicle) => {
 								return (
 									<SwiperSlide className={'top-vehicle-slide'} key={vehicle?._id}>
 										<TopVehicleCard vehicle={vehicle}  />
@@ -80,7 +81,7 @@ const TopVehicles = (props: TopVehiclesProps) => {
 								el: '.swiper-top-pagination',
 							}}
 						>
-							{topVehicles.map((vehicle: vehicle) => {
+							{topVehicles.map((vehicle: Vehicle) => {
 								return (
 									<SwiperSlide className={'top-vehicle-slide'} key={vehicle?._id}>
 										<TopVehicleCard vehicle={vehicle} />

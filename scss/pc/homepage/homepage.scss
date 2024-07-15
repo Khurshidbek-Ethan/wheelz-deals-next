@@ -1,7 +1,7 @@
 #pc-wrap {
 	.home-page {
 		position: relative;
-		width: 100%;
+		width: auto;
 		height: auto;
 		.info-box {
 			width: 100%;
@@ -118,30 +118,27 @@
 			position: relative;
 			margin-top: 5px;
 			margin-left: 5px;
-			margin-right: px;
 			padding: 16px 29px;
-			width: 2229px;
+			width: 2038px;
 			height: 96px;
 			display: flex;
 			flex-direction: row-reverse;
-			justify-content: space-between;
+			justify-content: space-around;
 			background-image: url('/img/banner/e-laden-vergleich-1 2.jpg');
 			background-repeat: no-repeat;
 			background-size: cover;
-
-			// background: rgba(34, 33, 33, 0.28);
 			border-radius: 12px;
 			.select-box {
-				width: 712px;
+				width: 1200px;
 				display: flex;
-				flex-direction: row-reverse;
+				flex-direction: row;
 				justify-content: space-between;
 				.box {
 					padding: 24px 22px;
 					width: 213px;
 					height: 56px;
 					display: flex;
-					flex-direction: row;
+					flex-direction: row-reverse;
 					align-items: center;
 					justify-content: space-between;
 					border-radius: 12px;
@@ -150,13 +147,14 @@
 					cursor: pointer;
 					&.on {
 						background: #ffffff;
-						border: 1px solid #000;
+						border: 2px solid #000;
 						color: #181a20;
 					}
 					span {
+						
 						color: #181a20;
 						font-family: $font;
-						font-size: 14px;
+						font-size: 25px;
 						font-style: normal;
 						font-weight: 400;
 						line-height: 26px;
