@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { vehicle } from '../../types/vehicle/vehicle';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_API_URL } from '../../config';
 import { formatterStr } from '../../utils';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
@@ -34,7 +34,7 @@ const vehicleBigCard = (props: vehicleBigCardProps) => {
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${vehicle?.vehicleImages?.[0]})` }}
+					style={{ backgroundImage: `url(${REACT_API_URL}/${vehicle?.vehicleImages?.[0]})` }}
 				>
 					{vehicle?.vehicleRank && vehicle?.vehicleRank >= 50 && (
 						<div className={'status'}>

@@ -2,7 +2,7 @@ import React from 'react';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Stack, Box, Typography } from '@mui/material';
 import Link from 'next/link';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_API_URL } from '../../config';
 import IconButton from '@mui/material/IconButton';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -19,7 +19,7 @@ const dealerCard = (props: dealerCardProps) => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
 	const imagePath: string = dealer?.memberImage
-		? `${REACT_APP_API_URL}/${dealer?.memberImage}`
+		? `${REACT_API_URL}/${dealer?.memberImage}`
 		: '/img/profile/defaultUser.svg';
 
 	if (device === 'mobile') {
@@ -43,7 +43,7 @@ const dealerCard = (props: dealerCardProps) => {
 							backgroundRepeat: 'no-repeat',
 						}}
 					>
-						<div>{dealer?.memberVehicles} Vehicles</div>
+						<div>{dealer?.memberVehicle} Vehicles</div>
 					</Box>
 				</Link>
 

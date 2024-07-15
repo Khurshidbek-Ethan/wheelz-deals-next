@@ -6,7 +6,8 @@ import { vehicle } from '../../types/vehicle/vehicle';
 import { VehiclesInquiry } from '../../types/vehicle/vehicle.input';
 import { T } from '../../types/common';
 import { useRouter } from 'next/router';
-import VehicleCard from '../vehicle/vehicleCard';
+import { VehicleCard } from '../mypage/VehicleCard';
+
 
 const MyVehicles: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
@@ -58,7 +59,7 @@ const MyVehicles: NextPage = ({ initialInput, ...props }: any) => {
 							</div>
 						)}
 						{dealerVehicles?.map((vehicle: vehicle) => {
-							return <VehicleCard vehicle={vehicle}  key={vehicle?._id} />;
+							return <VehicleCard vehicle={vehicle} key={vehicle?._id} />;
 						})}
 
 						{dealerVehicles.length !== 0 && (

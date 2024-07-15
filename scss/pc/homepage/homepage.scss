@@ -116,16 +116,20 @@
 		}
 		.search-box {
 			position: relative;
-			margin-top: 13px;
-			margin-left: 10px;
-			margin-right: 10px;
+			margin-top: 5px;
+			margin-left: 5px;
+			margin-right: px;
 			padding: 16px 29px;
-			width: 2220px;
+			width: 2229px;
 			height: 96px;
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: space-between;
-			background: rgba(34, 33, 33, 0.28);
+			background-image: url('/img/banner/e-laden-vergleich-1 2.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+
+			// background: rgba(34, 33, 33, 0.28);
 			border-radius: 12px;
 			.select-box {
 				width: 712px;

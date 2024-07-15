@@ -1,4 +1,4 @@
-import { VehicleLocation, vehicleStatus, VehicleType } from '../../enums/vehicle.enum';
+import { VehicleLocation, VehicleStatus, VehicleType } from '../../enums/vehicle.enum';
 import { Direction } from '../../enums/common.enum';
 
 export interface vehicleInput {
@@ -19,6 +19,10 @@ export interface vehicleInput {
 }
 
 interface PISearch {
+	openColor: any;
+	colorsList: any;
+	oilsList: any;
+	brandsList: any;
 	memberId?: string;
 	locationList?: VehicleLocation[];
 	typeList?: VehicleType[];
@@ -40,7 +44,7 @@ export interface VehiclesInquiry {
 }
 
 interface APISearch {
-	vehicleStatus?: vehicleStatus;
+	vehicleStatus?: VehicleStatus;
 }
 
 export interface dealerVehiclesInquiry {
@@ -52,7 +56,7 @@ export interface dealerVehiclesInquiry {
 }
 
 interface ALPISearch {
-	vehicleStatus?: vehicleStatus;
+	vehicleStatus?: VehicleStatus;
 	VehicleLocationList?: VehicleLocation[];
 }
 

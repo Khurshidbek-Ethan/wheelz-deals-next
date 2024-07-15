@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Button, Stack, Typography } from '@mui/material';
 import axios from 'axios';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_API_URL } from '../../config';
 import { getJwtToken } from '../../auth';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
@@ -55,7 +55,7 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 			);
 			formData.append('0', image);
 
-			const response = await axios.post(`${process.env.REACT_APP_API_GRAPHQL_URL}`, formData, {
+			const response = await axios.post(`${process.env.REACT_API_GRAPHQL_URL}`, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 					'apollo-require-preflight': true,
@@ -68,7 +68,7 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 			updateData.memberImage = responseImage;
 			setUpdateData({ ...updateData });
 
-			return `${REACT_APP_API_URL}/${responseImage}`;
+			return `${REACT_API_URL}/${responseImage}`;
 		} catch (err) {
 			console.log('Error, uploadImage:', err);
 		}
@@ -108,7 +108,7 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 								<img
 									src={
 										updateData?.memberImage
-											? `${REACT_APP_API_URL}/${updateData?.memberImage}`
+											? `${REACT_API_URL}/${updateData?.memberImage}`
 											: `/img/profile/defaultUser.svg`
 									}
 									alt=""

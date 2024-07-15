@@ -1,16 +1,5 @@
-export const REACT_APP_API_URL = `${process.env.REACT_APP_API_URL}`;
+export const REACT_API_URL = `${process.env.REACT_API_URL}`;
 
-export const availableOptions = ['vehicleBarter', 'vehicleRent'];
-
-const thisYear = new Date().getFullYear();
-
-export const vehicleYears: any = [];
-
-for (let i = 1970; i <= thisYear; i++) {
-	vehicleYears.push(String(i));
-}
-
-export const vehicleSquare = [0, 25, 50, 75, 100, 125, 150, 200, 300, 500];
 
 export const Messages = {
 	error1: 'Something went wrong!',

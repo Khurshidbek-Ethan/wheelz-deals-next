@@ -17,14 +17,17 @@ export const SIGN_UP = gql`
 			memberImage
 			memberAddress
 			memberDesc
-			memberWarnings
-			memberBlocks
-			memberVehicles
-			memberRank
+			memberVehicle
 			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
 			memberViews
+			memberComments
+			memberRank
+			memberWarnings
+			memberBlocks
 			deletedAt
 			createdAt
 			updatedAt
@@ -46,13 +49,17 @@ export const LOGIN = gql`
 			memberImage
 			memberAddress
 			memberDesc
-			memberWarnings
-			memberBlocks
-			memberVehicles
-			memberRank
+			memberVehicle
+			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
 			memberViews
+			memberComments
+			memberRank
+			memberWarnings
+			memberBlocks
 			deletedAt
 			createdAt
 			updatedAt
@@ -74,12 +81,15 @@ export const UPDATE_MEMBER = gql`
 			memberImage
 			memberAddress
 			memberDesc
-			memberVehicles
-			memberRank
+			memberVehicle
 			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
 			memberViews
+			memberComments
+			memberRank
 			memberWarnings
 			memberBlocks
 			deletedAt
@@ -103,13 +113,17 @@ export const LIKE_TARGET_MEMBER = gql`
 			memberImage
 			memberAddress
 			memberDesc
-			memberWarnings
-			memberBlocks
-			memberVehicles
-			memberRank
+			memberVehicle
+			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
 			memberViews
+			memberComments
+			memberRank
+			memberWarnings
+			memberBlocks
 			deletedAt
 			createdAt
 			updatedAt
@@ -123,24 +137,24 @@ export const LIKE_TARGET_MEMBER = gql`
  *************************/
 
 export const CREATE_vehicle = gql`
-	mutation Createvehicle($input: vehicleInput!) {
-		createvehicle(input: $input) {
+	mutation CreateVehicle($input: VehicleInput!) {
+		createVehicle(input: $input) {
 			_id
-			VehicleType
+			vehicleType
 			vehicleStatus
-			VehicleLocation
+			vehicleLocation
+			vehicleBrand
+			vehicleOil
+			vehicleColor
 			vehicleAddress
-			vehicleTitle
 			vehiclePrice
-			vehicleSquare
-			vehicleBeds
-			vehicleRooms
-			vehicleViews
 			vehicleLikes
+			vehicleViews
+			vehicleTitle
+			vehicleComments
+			vehicleRank
 			vehicleImages
 			vehicleDesc
-			vehicleBarter
-			vehicleRent
 			memberId
 			soldAt
 			deletedAt
@@ -152,24 +166,23 @@ export const CREATE_vehicle = gql`
 `;
 
 export const UPDATE_vehicle = gql`
-	mutation Updatevehicle($input: vehicleUpdate!) {
-		updatevehicle(input: $input) {
+	mutation UpdateVehicle($input: VehicleUpdate!) {
+		updateVehicle(input: $input) {
 			_id
-			VehicleType
+			vehicleType
 			vehicleStatus
-			VehicleLocation
+			vehicleLocation
+			vehicleBrand
+			vehicleOil
+			vehicleColor
 			vehicleAddress
-			vehicleTitle
 			vehiclePrice
-			vehicleSquare
-			vehicleBeds
-			vehicleRooms
 			vehicleViews
 			vehicleLikes
+			vehicleComments
+			vehicleRank
 			vehicleImages
 			vehicleDesc
-			vehicleBarter
-			vehicleRent
 			memberId
 			soldAt
 			deletedAt
@@ -181,24 +194,24 @@ export const UPDATE_vehicle = gql`
 `;
 
 export const LIKE_TARGET_vehicle = gql`
-	mutation LikeTargetvehicle($input: String!) {
-		likeTargetvehicle(vehicleId: $input) {
+	mutation LikeTargetVehicle($input: String!) {
+		likeTargetVehicle(vehicleId: $input) {
 			_id
-			VehicleType
+			vehicleType
 			vehicleStatus
-			VehicleLocation
+			vehicleLocation
+			vehicleBrand
+			vehicleOil
+			vehicleColor
 			vehicleAddress
 			vehicleTitle
 			vehiclePrice
-			vehicleSquare
-			vehicleBeds
-			vehicleRooms
 			vehicleViews
 			vehicleLikes
+			vehicleComments
+			vehicleRank
 			vehicleImages
 			vehicleDesc
-			vehicleBarter
-			vehicleRent
 			memberId
 			soldAt
 			deletedAt
@@ -224,6 +237,7 @@ export const CREATE_BOARD_ARTICLE = gql`
 			articleImage
 			articleViews
 			articleLikes
+			articleComments
 			memberId
 			createdAt
 			updatedAt
@@ -242,6 +256,7 @@ export const UPDATE_BOARD_ARTICLE = gql`
 			articleImage
 			articleViews
 			articleLikes
+			articleComments
 			memberId
 			createdAt
 			updatedAt
@@ -260,9 +275,12 @@ export const LIKE_TARGET_BOARD_ARTICLE = gql`
 			articleImage
 			articleViews
 			articleLikes
+			articleComments
 			memberId
 			createdAt
 			updatedAt
+			
+			
 		}
 	}
 `;

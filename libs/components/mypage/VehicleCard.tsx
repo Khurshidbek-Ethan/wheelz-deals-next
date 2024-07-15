@@ -8,7 +8,7 @@ import { vehicle } from '../../types/vehicle/vehicle';
 import { formatterStr } from '../../utils';
 import Moment from 'react-moment';
 import { useRouter } from 'next/router';
-import { vehicleStatus } from '../../enums/vehicle.enum';
+import { VehicleStatus } from '../../enums/vehicle.enum';
 
 interface vehicleCardProps {
 	vehicle: vehicle;
@@ -56,7 +56,7 @@ export const VehicleCard = (props: vehicleCardProps) => {
 		return (
 			<Stack className="vehicle-card-box">
 				<Stack className="image-box" onClick={() => pushvehicleDetail(vehicle?._id)}>
-					<img src={`${process.env.REACT_APP_API_URL}/${vehicle.vehicleImages[0]}`} alt="" />
+					<img src={`${process.env.REACT_API_URL}/${vehicle.vehicleImages[0]}`} alt="" />
 				</Stack>
 				<Stack className="information-box" onClick={() => pushvehicleDetail(vehicle?._id)}>
 					<Typography className="name">{vehicle.vehicleTitle}</Typography>
@@ -104,7 +104,7 @@ export const VehicleCard = (props: vehicleCardProps) => {
 									disableRipple
 									onClick={() => {
 										handleClose();
-										updatevehicleHandler(vehicleStatus.SOLD, vehicle?._id);
+										updatevehicleHandler(VehicleStatus.SOLD, vehicle?._id);
 									}}
 								>
 									Sold

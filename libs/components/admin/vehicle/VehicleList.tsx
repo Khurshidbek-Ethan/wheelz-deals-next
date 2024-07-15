@@ -15,7 +15,7 @@ import {
 import Avatar from '@mui/material/Avatar';
 import { Stack } from '@mui/material';
 
-import { REACT_APP_API_URL } from '../../../config';
+import { REACT_API_URL } from '../../../config';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 import { vehicle } from '../../../types/vehicle/vehicle';
@@ -144,7 +144,7 @@ export const vehiclePanelList = (props: vehiclePanelListType) => {
 
 						{Vehicles.length !== 0 &&
 							Vehicles.map((vehicle: vehicle, index: number) => {
-								const vehicleImage = `${REACT_APP_API_URL}/${vehicle?.vehicleImages[0]}`;
+								const vehicleImage = `${REACT_API_URL}/${vehicle?.vehicleImages[0]}`;
 
 								return (
 									<TableRow hover key={vehicle?._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>

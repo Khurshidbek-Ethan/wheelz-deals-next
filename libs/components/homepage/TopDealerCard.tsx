@@ -12,7 +12,7 @@ const TopdealerCard = (props: TopdealerProps) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const dealerImage = dealer?.memberImage
-		? `${process.env.REACT_APP_API_URL}/${dealer?.memberImage}`
+		? `${process.env.REACT_API_URL}/${dealer?.memberImage}`
 		: '/img/profile/defaultUser.svg';
 
 	/** HANDLERS **/

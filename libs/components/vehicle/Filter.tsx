@@ -17,7 +17,7 @@ import { VehicleLocation, VehicleType } from '../../enums/vehicle.enum';
 import { VehiclesInquiry } from '../../types/vehicle/vehicle.input';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import { vehicleSquare } from '../../config';
+
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 const MenuProps = {
@@ -714,46 +714,10 @@ const Filter = (props: FilterType) => {
 					<Stack className="square-year-input">
 						<FormControl>
 							<InputLabel id="demo-simple-select-label">Min</InputLabel>
-							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.start ?? 0}
-								label="Min"
-								onChange={(e: any) => vehicleSquareHandler(e, 'start')}
-								MenuProps={MenuProps}
-							>
-								{vehicleSquare.map((square: number) => (
-									<MenuItem
-										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
-										key={square}
-									>
-										{square}
-									</MenuItem>
-								))}
-							</Select>
 						</FormControl>
 						<div className="central-divider"></div>
 						<FormControl>
 							<InputLabel id="demo-simple-select-label">Max</InputLabel>
-							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.end ?? 500}
-								label="Max"
-								onChange={(e: any) => vehicleSquareHandler(e, 'end')}
-								MenuProps={MenuProps}
-							>
-								{vehicleSquare.map((square: number) => (
-									<MenuItem
-										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
-										key={square}
-									>
-										{square}
-									</MenuItem>
-								))}
-							</Select>
 						</FormControl>
 					</Stack>
 				</Stack>

@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { vehicleSquare, vehicleYears } from '../../config';
+
 import { VehicleLocation, VehicleType } from '../../enums/vehicle.enum';
 import { VehiclesInquiry } from '../../types/vehicle/vehicle.input';
 import { useRouter } from 'next/router';
@@ -32,8 +32,6 @@ const MenuProps = {
 	},
 };
 
-const thisYear = new Date().getFullYear();
-
 interface HeaderFilterProps {
 	initialInput: VehiclesInquiry;
 }
@@ -45,14 +43,18 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const [searchFilter, setSearchFilter] = useState<VehiclesInquiry>(initialInput);
 	const locationRef: any = useRef();
 	const typeRef: any = useRef();
+	const brandsRef: any = useRef();
+	const OilRef: any = useRef();
+	const ColorRef: any = useRef();
 	const router = useRouter();
 	const [openAdvancedFilter, setOpenAdvancedFilter] = useState(false);
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
-
+	const [openBrands, setOpenBrands] = useState(false);
+	const [openOil, setOpenOil] = useState(false);
+	const [openColor, setOpenColor] = useState(false);
 	const [vehicleLocation, setVehicleLocation] = useState<VehicleLocation[]>(Object.values(VehicleLocation));
 	const [vehicleType, setVehicleType] = useState<VehicleType[]>(Object.values(VehicleType));
-
 	const [optionCheck, setOptionCheck] = useState('all');
 
 	/** LIFECYCLES **/
@@ -66,9 +68,17 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				setOpenType(false);
 			}
 
-			// if (!roomsRef?.current?.contains(event.target)) {
-			// 	setOpenRooms(false);
-			// }
+			if (!brandsRef?.current?.contains(event.target)) {
+				setOpenBrands(false);
+			}
+
+			if (!OilRef?.current?.contains(event.target)) {
+				setOpenOil(false);
+			}
+
+			if (!ColorRef?.current?.contains(event.target)) {
+				setOpenColor(false);
+			}
 		};
 
 		document.addEventListener('mousedown', clickHandler);
@@ -81,36 +91,52 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	/** HANDLERS **/
 	const advancedFilterHandler = (status: boolean) => {
 		setOpenLocation(false);
-		// setOpenRooms(false);
+		setOpenBrands(false);
 		setOpenType(false);
+		setOpenOil(false);
+		setOpenColor(false);
 		setOpenAdvancedFilter(status);
 	};
 
 	const locationStateChangeHandler = () => {
 		setOpenLocation((prev) => !prev);
-		// setOpenRooms(false);
+		setOpenBrands(false);
 		setOpenType(false);
 	};
 
 	const typeStateChangeHandler = () => {
 		setOpenType((prev) => !prev);
 		setOpenLocation(false);
-		// setOpenRooms(false);
+		setOpenBrands(false);
 	};
 
-	// const roomStateChangeHandler = () => {
-	// 	// setOpenRooms((prev) => !prev);
-	// 	setOpenType(false);
-	// 	setOpenLocation(false);
-	// };
-
-	const disableAllStateHandler = () => {
-		// setOpenRooms(false);
+	const brandStateChangeHandler = () => {
+		setOpenBrands((prev) => !prev);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
 
-	const VehicleLocationSelectHandler = useCallback(
+	const oilStateChangeHandler = () => {
+		setOpenOil((prev) => !prev);
+		setOpenType(false);
+		setOpenLocation(false);
+	};
+
+	const colorStateChangeHandler = () => {
+		setOpenColor((prev) => !prev);
+		setOpenType(false);
+		setOpenLocation(false);
+	};
+
+	const disableAllStateHandler = () => {
+		setOpenBrands(false);
+		setOpenType(false);
+		setOpenLocation(false);
+		setOpenOil(false);
+		setOpenColor(false);
+	};
+
+	const vehicleLocationSelectHandler = useCallback(
 		async (value: any) => {
 			try {
 				setSearchFilter({
@@ -122,165 +148,84 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				});
 				typeStateChangeHandler();
 			} catch (err: any) {
-				console.log('ERROR, VehicleLocationSelectHandler:', err);
+				console.log('ERROR, vehicleLocationSelectHandler:', err);
 			}
 		},
 		[searchFilter],
 	);
 
-	// const VehicleTypeSelectHandler = useCallback(
-	// 	async (value: any) => {
-	// 		try {
-	// 			setSearchFilter({
-	// 				...searchFilter,
-	// 				search: {
-	// 					...searchFilter.search,
-	// 					typeList: [value],
-	// 				},
-	// 			});
-	// 			// roomStateChangeHandler();
-	// 		} catch (err: any) {
-	// 			console.log('ERROR, VehicleTypeSelectHandler:', err);
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
+	const vehicleTypeSelectHandler = useCallback(
+		async (value: any) => {
+			try {
+				setSearchFilter({
+					...searchFilter,
+					search: {
+						...searchFilter.search,
+						typeList: [value],
+					},
+				});
+				brandStateChangeHandler();
+			} catch (err: any) {
+				console.log('ERROR, vehicleTypeSelectHandler:', err);
+			}
+		},
+		[searchFilter],
+	);
 
-	// const vehicleRoomSelectHandler = useCallback(
-	// 	async (value: any) => {
-	// 		try {
-	// 			setSearchFilter({
-	// 				...searchFilter,
-	// 				search: {
-	// 					...searchFilter.search,
-	// 					roomsList: [value],
-	// 				},
-	// 			});
-	// 			disableAllStateHandler();
-	// 		} catch (err: any) {
-	// 			console.log('ERROR, vehicleRoomSelectHandler:', err);
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
+	const vehicleBrandsSelectHandler = useCallback(
+		async (value: any) => {
+			try {
+				setSearchFilter({
+					...searchFilter,
+					search: {
+						...searchFilter.search,
+						brandsList: [value],
+					},
+				});
+				oilStateChangeHandler();
+				colorStateChangeHandler();
+			} catch (err: any) {
+				console.log('ERROR, vehicleBrandsSelectHandler:', err);
+			}
+		},
+		[searchFilter],
+	);
 
-	// const vehicleBedSelectHandler = useCallback(
-	// 	async (number: Number) => {
-	// 		try {
-	// 			if (number != 0) {
-	// 				if (searchFilter?.search?.bedsList?.includes(number)) {
-	// 					setSearchFilter({
-	// 						...searchFilter,
-	// 						search: {
-	// 							...searchFilter.search,
-	// 							bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-	// 						},
-	// 					});
-	// 				} else {
-	// 					setSearchFilter({
-	// 						...searchFilter,
-	// 						search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-	// 					});
-	// 				}
-	// 			} else {
-	// 				delete searchFilter?.search.bedsList;
-	// 				setSearchFilter({ ...searchFilter });
-	// 			}
+	const vehicleOilSelectHandler = useCallback(
+		async (value: any) => {
+			try {
+				setSearchFilter({
+					...searchFilter,
+					search: {
+						...searchFilter.search,
+						oilsList: [value],
+					},
+				});
+				disableAllStateHandler();
+			} catch (err: any) {
+				console.log('ERROR, vehicleOilSelectHandler:', err);
+			}
+		},
+		[searchFilter],
+	);
 
-	// 			console.log('vehicleBedSelectHandler:', number);
-	// 		} catch (err: any) {
-	// 			console.log('ERROR, vehicleBedSelectHandler:', err);
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
-
-	// const vehicleOptionSelectHandler = useCallback(
-	// 	async (e: any) => {
-	// 		try {
-	// 			const value = e.target.value;
-	// 			setOptionCheck(value);
-
-	// 			if (value !== 'all') {
-	// 				setSearchFilter({
-	// 					...searchFilter,
-	// 					search: {
-	// 						...searchFilter.search,
-	// 						options: [value],
-	// 					},
-	// 				});
-	// 			} else {
-	// 				delete searchFilter.search.options;
-	// 				setSearchFilter({
-	// 					...searchFilter,
-	// 					search: {
-	// 						...searchFilter.search,
-	// 					},
-	// 				});
-	// 			}
-	// 		} catch (err: any) {
-	// 			console.log('ERROR, vehicleOptionSelectHandler:', err);
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
-
-	// const vehicleSquareHandler = useCallback(
-	// 	async (e: any, type: string) => {
-	// 		const value = e.target.value;
-
-	// 		if (type == 'start') {
-	// 			setSearchFilter({
-	// 				...searchFilter,
-	// 				search: {
-	// 					...searchFilter.search,
-	// 					// @ts-ignore
-	// 					squaresRange: { ...searchFilter.search.squaresRange, start: parseInt(value) },
-	// 				},
-	// 			});
-	// 		} else {
-	// 			setSearchFilter({
-	// 				...searchFilter,
-	// 				search: {
-	// 					...searchFilter.search,
-	// 					// @ts-ignore
-	// 					squaresRange: { ...searchFilter.search.squaresRange, end: parseInt(value) },
-	// 				},
-	// 			});
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
-
-	// const yearStartChangeHandler = async (event: any) => {
-	// 	setYearCheck({ ...yearCheck, start: Number(event.target.value) });
-
-	// 	setSearchFilter({
-	// 		...searchFilter,
-	// 		search: {
-	// 			...searchFilter.search,
-	// 			periodsRange: { start: Number(event.target.value), end: yearCheck.end },
-	// 		},
-	// 	});
-	// };
-
-	// const yearEndChangeHandler = async (event: any) => {
-	// 	setYearCheck({ ...yearCheck, end: Number(event.target.value) });
-
-	// 	setSearchFilter({
-	// 		...searchFilter,
-	// 		search: {
-	// 			...searchFilter.search,
-	// 			periodsRange: { start: yearCheck.start, end: Number(event.target.value) },
-	// 		},
-	// 	});
-	// };
-
-	// const resetFilterHandler = () => {
-	// 	setSearchFilter(initialInput);
-	// 	setOptionCheck('all');
-	// 	setYearCheck({ start: 1970, end: thisYear });
-	// };
+	const vehicleColorSelectHandler = useCallback(
+		async (value: any) => {
+			try {
+				setSearchFilter({
+					...searchFilter,
+					search: {
+						...searchFilter.search,
+						colorsList: [value],
+					},
+				});
+				disableAllStateHandler();
+			} catch (err: any) {
+				console.log('ERROR, vehicleColorSelectHandler:', err);
+			}
+		},
+		[searchFilter],
+	);
 
 	const pushSearchHandler = async () => {
 		try {
@@ -292,17 +237,17 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			// if (searchFilter?.search?.roomsList?.length == 0) {
-			// 	delete searchFilter.search.roomsList;
-			// }
+			if (searchFilter?.search?.brandsList?.length == 0) {
+				delete searchFilter.search.brandsList;
+			}
 
-			// if (searchFilter?.search?.options?.length == 0) {
-			// 	delete searchFilter.search.options;
-			// }
+			if (searchFilter?.search?.oilsList?.length == 0) {
+				delete searchFilter.search.oilsList;
+			}
 
-			// if (searchFilter?.search?.bedsList?.length == 0) {
-			// 	delete searchFilter.search.bedsList;
-			// }
+			if (searchFilter?.search?.colorsList?.length == 0) {
+				delete searchFilter.search.colorsList;
+			}
 
 			await router.push(
 				`/vehicle?input=${JSON.stringify(searchFilter)}`,
@@ -328,11 +273,27 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('vehicle type')} </span>
 							<ExpandMoreIcon />
 						</Box>
+						<Box className={`box ${openBrands ? 'on' : ''}`} onClick={brandStateChangeHandler}>
+							<span>
+								{searchFilter?.search?.brandsList ? `${searchFilter?.search?.brandsList[0]} brands}` : t('Brands')}
+							</span>
+							<ExpandMoreIcon />
+						</Box>
+						<Box className={`box ${openOil ? 'on' : ''}`} onClick={vehicleOilSelectHandler}>
+							<span>{searchFilter?.search?.oilsList ? `${searchFilter?.search?.oilsList[0]} oils}` : t('Oils')}</span>
+							<ExpandMoreIcon />
+						</Box>
+						<Box className={`box ${openColor ? 'on' : ''}`} onClick={vehicleColorSelectHandler}>
+							<span>
+								{searchFilter?.search?.openColor ? `${searchFilter?.search?.openColor[0]} color}` : t('Color')}
+							</span>
+							<ExpandMoreIcon />
+						</Box>
 					</Stack>
 					<Stack className={'search-box-other'}>
 						<Box className={'advanced-filter'} onClick={() => advancedFilterHandler(true)}>
-							<img src="/img/icons/menu-vertical.svg" alt="" />
-							<span>{t('Advanced')}</span>
+							<img src="/img/icons/tune.svg" alt="" />
+							<span>{t('Pioneering')}</span>
 						</Box>
 						<Box className={'search-btn'} onClick={pushSearchHandler}>
 							<img src="/img/icons/search_white.svg" alt="" />
@@ -343,7 +304,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					<div className={`filter-location ${openLocation ? 'on' : ''}`} ref={locationRef}>
 						{vehicleLocation.map((location: string) => {
 							return (
-								<div onClick={() => VehicleLocationSelectHandler(location)} key={location}>
+								<div onClick={() => vehicleLocationSelectHandler(location)} key={location}>
 									<img src={`img/banner/cities/${location}.webp`} alt="" />
 									<span>{location}</span>
 								</div>
@@ -369,7 +330,23 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						})}
 					</div>
 
-					
+					<div className={`filter-brand ${openBrands ? 'on' : ''}`} ref={brandsRef}>
+						{vehicleType.map((brand: string) => {
+							function VehicleTypeSelectHandler(type: string): void {
+								throw new Error('Function not implemented.');
+							}
+
+							return (
+								<div
+									style={{ backgroundImage: `url(/img/banner/brand/${brand.toLowerCase()}.webp)` }}
+									onClick={() => VehicleTypeSelectHandler(brand)}
+									key={brand}
+								>
+									<span>{brand}</span>
+								</div>
+							);
+						})}
+					</div>
 				</Stack>
 
 				{/* ADVANCED FILTER MODAL */}
@@ -405,16 +382,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<Divider sx={{ mt: '30px', mb: '35px' }} />
 							<div className={'middle'}>
 								<div className={'row-box'}>
-									
-									<div className={'box'}>
-									</div>
+									<div className={'box'}></div>
 								</div>
-								
-									
-								</div>
+							</div>
 
 							<Divider sx={{ mt: '60px', mb: '18px' }} />
-							
 						</Box>
 					</Box>
 				</Modal>
@@ -428,10 +400,10 @@ HeaderFilter.defaultProps = {
 		page: 1,
 		limit: 9,
 		search: {
-			squaresRange: {
-				start: 0,
-				end: 500,
-			},
+			// squaresRange: {
+			// 	start: 0,
+			// 	end: 500,
+			// },
 			pricesRange: {
 				start: 0,
 				end: 2000000,

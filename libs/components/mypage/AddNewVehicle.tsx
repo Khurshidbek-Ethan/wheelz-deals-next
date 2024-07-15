@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Button, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { VehicleLocation, VehicleType } from '../../enums/vehicle.enum';
-import { REACT_APP_API_URL, vehicleSquare } from '../../config';
+import { REACT_API_URL, vehicleSquare } from '../../config';
 import { vehicleInput } from '../../types/vehicle/vehicle.input';
 import axios from 'axios';
 import { getJwtToken } from '../../auth';
@@ -78,7 +78,7 @@ const Addvehicle = ({ initialValues, ...props }: any) => {
 				if (/^\d+$/.test(key)) formData.append(`${key}`, selectedFiles[key]);
 			}
 
-			const response = await axios.post(`${process.env.REACT_APP_API_GRAPHQL_URL}`, formData, {
+			const response = await axios.post(`${process.env.REACT_API_GRAPHQL_URL}`, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 					'apollo-require-preflight': true,
@@ -432,7 +432,7 @@ const Addvehicle = ({ initialValues, ...props }: any) => {
 							</Stack>
 							<Stack className="gallery-box">
 								{insertvehicleData?.vehicleImages.map((image: string) => {
-									const imagePath: string = `${REACT_APP_API_URL}/${image}`;
+									const imagePath: string = `${REACT_API_URL}/${image}`;
 									return (
 										<Stack className="image-box">
 											<img src={imagePath} alt="" />

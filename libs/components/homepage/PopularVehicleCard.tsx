@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { vehicle } from '../../types/vehicle/vehicle';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_API_URL } from '../../config';
 import { useRouter } from 'next/router';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
@@ -27,7 +27,7 @@ const PopularvehicleCard = (props: PopularvehicleCardProps) => {
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${vehicle?.vehicleImages[0]})` }}
+					style={{ backgroundImage: `url(${REACT_API_URL}/${vehicle?.vehicleImages[0]})` }}
 				>
 					{vehicle?.vehicleRank && vehicle?.vehicleRank >= 50 ? (
 						<div className={'status'}>
@@ -76,7 +76,7 @@ const PopularvehicleCard = (props: PopularvehicleCardProps) => {
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${vehicle?.vehicleImages[0]})` }}
+					style={{ backgroundImage: `url(${REACT_API_URL}/${vehicle?.vehicleImages[0]})` }}
 				>
 					{vehicle?.vehicleRank && vehicle?.vehicleRank >= 50 ? (
 						<div className={'status'}>

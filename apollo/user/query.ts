@@ -5,8 +5,8 @@ import { gql } from '@apollo/client';
  *************************/
 
 export const GET_dealerS = gql`
-	query Getdealers($input: dealersInquiry!) {
-		getdealers(input: $input) {
+	query GetDealers($input: DealersInquiry!) {
+		getDealers(input: $input) {
 			list {
 				_id
 				memberType
@@ -18,22 +18,21 @@ export const GET_dealerS = gql`
 				memberImage
 				memberAddress
 				memberDesc
-				memberWarnings
-				memberBlocks
-				memberVehicles
-				memberRank
+				memberVehicle
+				memberArticles
+				memberFollowers
+				memberFollowings
 				memberPoints
 				memberLikes
 				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
 				deletedAt
 				createdAt
 				updatedAt
 				accessToken
-				meLiked {
-					memberId
-					likeRefId
-					myFavorite
-				}
 			}
 			metaCounter {
 				total
@@ -55,13 +54,14 @@ query GetMember($input: String!) {
         memberImage
         memberAddress
         memberDesc
-        memberVehicles
+        memberVehicle
         memberArticles
+        memberFollowers
+        memberFollowings
         memberPoints
         memberLikes
         memberViews
-        memberFollowings
-				memberFollowers
+        memberComments
         memberRank
         memberWarnings
         memberBlocks
@@ -70,12 +70,13 @@ query GetMember($input: String!) {
         updatedAt
         accessToken
         meFollowed {
-					followingId
-					followerId
-					myFollowing
-				}
+            followingId
+            followerId
+            myFollowing
+        }
     }
 }
+
 `);
 
 /**************************
@@ -83,24 +84,23 @@ query GetMember($input: String!) {
  *************************/
 
 export const GET_vehicle = gql`
-	query Getvehicle($input: String!) {
-		getvehicle(vehicleId: $input) {
+	query GetVehicle($input: String!) {
+		getVehicle(vehicleId: $input) {
 			_id
-			VehicleType
+			vehicleType
 			vehicleStatus
-			VehicleLocation
+			vehicleLocation
+			vehicleBrand
+			vehicleOil
+			vehicleColor
 			vehicleAddress
-			vehicleTitle
 			vehiclePrice
-			vehicleSquare
-			vehicleBeds
-			vehicleRooms
 			vehicleViews
 			vehicleLikes
+			vehicleComments
+			vehicleRank
 			vehicleImages
 			vehicleDesc
-			vehicleBarter
-			vehicleRent
 			memberId
 			soldAt
 			deletedAt
@@ -118,20 +118,26 @@ export const GET_vehicle = gql`
 				memberImage
 				memberAddress
 				memberDesc
-				memberWarnings
-				memberBlocks
+				memberVehicle
+				memberArticles
+				memberFollowers
+				memberFollowings
 				memberPoints
 				memberLikes
 				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
 				deletedAt
 				createdAt
 				updatedAt
 				accessToken
-			}
-			meLiked {
-				memberId
-				likeRefId
-				myFavorite
+				meLiked {
+					memberId
+					likeRefId
+					myFavorite
+				}
 			}
 		}
 	}
@@ -142,22 +148,21 @@ export const GET_Vehicles = gql`
 		getVehicles(input: $input) {
 			list {
 				_id
-				VehicleType
+				vehicleType
 				vehicleStatus
-				VehicleLocation
+				vehicleLocation
+				vehicleBrand
+				vehicleOil
+				vehicleColor
 				vehicleAddress
+				vehicleViews
 				vehicleTitle
 				vehiclePrice
-				vehicleSquare
-				vehicleBeds
-				vehicleRooms
-				vehicleViews
 				vehicleLikes
+				vehicleComments
 				vehicleRank
 				vehicleImages
 				vehicleDesc
-				vehicleBarter
-				vehicleRent
 				memberId
 				soldAt
 				deletedAt
@@ -175,17 +180,23 @@ export const GET_Vehicles = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberWarnings
-					memberBlocks
-					memberVehicles
-					memberRank
+					memberVehicle
+					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
+					memberComments
+					memberRank
+					memberWarnings
+					memberBlocks
 					deletedAt
 					createdAt
 					updatedAt
+					accessToken
 				}
+
 				meLiked {
 					memberId
 					likeRefId
@@ -200,25 +211,25 @@ export const GET_Vehicles = gql`
 `;
 
 export const GET_dealer_Vehicles = gql`
-	query GetdealerVehicles($input: dealerVehiclesInquiry!) {
-		getdealerVehicles(input: $input) {
+	query GetDealerVehicles($input: DelaerVehicleInquiry!) {
+		getDealerVehicles(input: $input) {
 			list {
 				_id
-				VehicleType
+				vehicleType
 				vehicleStatus
-				VehicleLocation
+				vehicleLocation
+				vehicleBrand
+				vehicleOil
+				vehicleColor
 				vehicleAddress
 				vehicleTitle
 				vehiclePrice
-				vehicleSquare
-				vehicleBeds
-				vehicleRooms
 				vehicleViews
 				vehicleLikes
+				vehicleComments
+				vehicleRank
 				vehicleImages
 				vehicleDesc
-				vehicleBarter
-				vehicleRent
 				memberId
 				soldAt
 				deletedAt
@@ -238,23 +249,21 @@ export const GET_FAVORITES = gql`
 		getFavorites(input: $input) {
 			list {
 				_id
-				VehicleType
+				vehicleType
 				vehicleStatus
-				VehicleLocation
+				vehicleLocation
+				vehicleBrand
+				vehicleOil
+				vehicleColor
 				vehicleAddress
 				vehicleTitle
 				vehiclePrice
-				vehicleSquare
-				vehicleBeds
-				vehicleRooms
 				vehicleViews
 				vehicleLikes
 				vehicleComments
 				vehicleRank
 				vehicleImages
 				vehicleDesc
-				vehicleBarter
-				vehicleRent
 				memberId
 				soldAt
 				deletedAt
@@ -272,14 +281,14 @@ export const GET_FAVORITES = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberVehicles
+					memberVehicle
 					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
 					memberComments
-					memberFollowings
-					memberFollowers
 					memberRank
 					memberWarnings
 					memberBlocks
@@ -301,23 +310,21 @@ export const GET_VISITED = gql`
 		getVisited(input: $input) {
 			list {
 				_id
-				VehicleType
+				vehicleType
 				vehicleStatus
-				VehicleLocation
+				vehicleLocation
+				vehicleBrand
+				vehicleOil
+				vehicleColor
 				vehicleAddress
 				vehicleTitle
 				vehiclePrice
-				vehicleSquare
-				vehicleBeds
-				vehicleRooms
 				vehicleViews
 				vehicleLikes
 				vehicleComments
 				vehicleRank
 				vehicleImages
 				vehicleDesc
-				vehicleBarter
-				vehicleRent
 				memberId
 				soldAt
 				deletedAt
@@ -335,14 +342,14 @@ export const GET_VISITED = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberVehicles
+					memberVehicle
 					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
 					memberComments
-					memberFollowings
-					memberFollowers
 					memberRank
 					memberWarnings
 					memberBlocks
@@ -378,6 +385,11 @@ export const GET_BOARD_ARTICLE = gql`
 			memberId
 			createdAt
 			updatedAt
+			meLiked {
+				memberId
+				likeRefId
+				myFavorite
+			}
 			memberData {
 				_id
 				memberType
@@ -389,21 +401,26 @@ export const GET_BOARD_ARTICLE = gql`
 				memberImage
 				memberAddress
 				memberDesc
-				memberWarnings
-				memberBlocks
-				memberVehicles
-				memberRank
+				memberVehicle
+				memberArticles
+				memberFollowers
+				memberFollowings
 				memberPoints
 				memberLikes
 				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
 				deletedAt
 				createdAt
 				updatedAt
-			}
-			meLiked {
-				memberId
-				likeRefId
-				myFavorite
+				accessToken
+				meLiked {
+					memberId
+					likeRefId
+					myFavorite
+				}
 			}
 		}
 	}
@@ -441,16 +458,21 @@ export const GET_BOARD_ARTICLES = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberWarnings
-					memberBlocks
-					memberVehicles
-					memberRank
+					memberVehicle
+					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
+					memberComments
+					memberRank
+					memberWarnings
+					memberBlocks
 					deletedAt
 					createdAt
 					updatedAt
+					accessToken
 				}
 			}
 			metaCounter {
@@ -487,13 +509,17 @@ export const GET_COMMENTS = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberWarnings
-					memberBlocks
-					memberVehicles
-					memberRank
+					memberVehicle
+					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
+					memberComments
+					memberRank
+					memberWarnings
+					memberBlocks
 					deletedAt
 					createdAt
 					updatedAt
@@ -519,11 +545,6 @@ export const GET_MEMBER_FOLLOWERS = gql`
 				followerId
 				createdAt
 				updatedAt
-				meLiked {
-					memberId
-					likeRefId
-					myFavorite
-				}
 				meFollowed {
 					followingId
 					followerId
@@ -540,20 +561,26 @@ export const GET_MEMBER_FOLLOWERS = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberVehicles
+					memberVehicle
 					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
 					memberComments
-					memberFollowings
-					memberFollowers
 					memberRank
 					memberWarnings
 					memberBlocks
 					deletedAt
 					createdAt
 					updatedAt
+					accessToken
+					meFollowed {
+						followingId
+						followerId
+						myFollowing
+					}
 				}
 			}
 			metaCounter {
@@ -572,6 +599,16 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 				followerId
 				createdAt
 				updatedAt
+				meLiked {
+					memberId
+					likeRefId
+					myFavorite
+				}
+				meFollowed {
+					followingId
+					followerId
+					myFollowing
+				}
 				followingData {
 					_id
 					memberType
@@ -583,14 +620,14 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberVehicles
+					memberVehicle
 					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
 					memberComments
-					memberFollowings
-					memberFollowers
 					memberRank
 					memberWarnings
 					memberBlocks
@@ -598,16 +635,16 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 					createdAt
 					updatedAt
 					accessToken
-				}
-				meLiked {
-					memberId
-					likeRefId
-					myFavorite
-				}
-				meFollowed {
-					followingId
-					followerId
-					myFollowing
+					meLiked {
+						memberId
+						likeRefId
+						myFavorite
+					}
+					meFollowed {
+						followingId
+						followerId
+						myFollowing
+					}
 				}
 			}
 			metaCounter {

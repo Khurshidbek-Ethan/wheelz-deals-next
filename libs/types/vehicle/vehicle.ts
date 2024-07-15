@@ -1,4 +1,4 @@
-import { VehicleLocation, vehicleStatus, VehicleType } from '../../enums/vehicle.enum';
+import { VehicleLocation, VehicleStatus, VehicleType } from '../../enums/vehicle.enum';
 import { Member } from '../member/member';
 
 export interface MeLiked {
@@ -14,7 +14,7 @@ export interface TotalCounter {
 export interface vehicle {
 	_id: string;
 	VehicleType: VehicleType;
-	vehicleStatus: vehicleStatus;
+	vehicleStatus: VehicleStatus;
 	VehicleLocation: VehicleLocation;
 	vehicleAddress: string;
 	vehicleTitle: string;

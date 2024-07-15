@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { FollowInquiry } from '../../types/follow/follow.input';
 import { useReactiveVar } from '@apollo/client';
 import { Following } from '../../types/follow/follow';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_API_URL } from '../../config';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { userVar } from '../../../apollo/store';
@@ -68,7 +68,7 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 					)}
 					{memberFollowings.map((follower: Following) => {
 						const imagePath: string = follower?.followingData?.memberImage
-							? `${REACT_APP_API_URL}/${follower?.followingData?.memberImage}`
+							? `${REACT_API_URL}/${follower?.followingData?.memberImage}`
 							: '/img/profile/defaultUser.svg';
 						return (
 							<Stack className="follows-card-box" key={follower._id}>

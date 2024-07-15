@@ -1,9 +1,9 @@
-import { VehicleLocation, vehicleStatus, VehicleType } from '../../enums/vehicle.enum';
+import { VehicleLocation, VehicleStatus, VehicleType } from '../../enums/vehicle.enum';
 
 export interface vehicleUpdate {
 	_id: string;
 	VehicleType?: VehicleType;
-	vehicleStatus?: vehicleStatus;
+	vehicleStatus?: VehicleStatus;
 	VehicleLocation?: VehicleLocation;
 	vehicleAddress?: string;
 	vehicleTitle?: string;

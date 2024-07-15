@@ -4,7 +4,7 @@ import { Stack, Typography, Box, List, ListItem, Button } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import Link from 'next/link';
 import { Member } from '../../types/member/member';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_API_URL } from '../../config';
 
 interface MemberMenuProps {
 	subscribeHandler: any;
@@ -29,7 +29,7 @@ const MemberMenu = (props: MemberMenuProps) => {
 				<Stack className={'profile'}>
 					<Box component={'div'} className={'profile-img'}>
 						<img
-							src={member?.memberImage ? `${REACT_APP_API_URL}/${member?.memberImage}` : '/img/profile/defaultUser.svg'}
+							src={member?.memberImage ? `${REACT_API_URL}/${member?.memberImage}` : '/img/profile/defaultUser.svg'}
 							alt={'member-photo'}
 						/>
 					</Box>
@@ -90,7 +90,7 @@ const MemberMenu = (props: MemberMenuProps) => {
 												Vehicles
 											</Typography>
 											<Typography className="count-title" variant="subtitle1">
-												{member?.memberVehicles}
+												{member?.memberVehicle}
 											</Typography>
 										</div>
 									</Link>

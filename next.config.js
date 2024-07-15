@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	env: {
-		REAC_API_URL: process.env.REAC_API_URL,
+		REACT_API_URL: process.env.REACT_API_URL,
 		REACT_API_GRAPHQL_URL: process.env.REACT_API_GRAPHQL_URL,
 		REACT_API_WS: process.env.REACT_API_WS,
 	},

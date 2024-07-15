@@ -6,12 +6,10 @@ import { Autoplay, Navigation, Pagination } from 'swiper';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
 
-
 import Link from 'next/link';
 import { VehiclesInquiry } from '../../types/vehicle/vehicle.input';
 import { vehicle } from '../../types/vehicle/vehicle';
 import PopularvehicleCard from './PopularVehicleCard';
-
 
 interface PopularVehiclesProps {
 	initialInput: VehiclesInquiry;

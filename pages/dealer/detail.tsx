@@ -2,7 +2,6 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import useDeviceDetect from '../../libs/hooks/useDeviceDetect';
 import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
-import vehicleBigCard from '../../libs/components/common/vehicleBigCard';
 import ReviewCard from '../../libs/components/dealer/ReviewCard';
 import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
@@ -16,8 +15,9 @@ import { VehiclesInquiry } from '../../libs/types/vehicle/vehicle.input';
 import { CommentInput, CommentsInquiry } from '../../libs/types/comment/comment.input';
 import { Comment } from '../../libs/types/comment/comment';
 import { CommentGroup } from '../../libs/enums/comment.enum';
-import { REACT_APP_API_URL } from '../../libs/config';
+import { REACT_API_URL } from '../../libs/config';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import VehicleBigCard from '../../libs/components/common/VehicleBigCard';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -87,7 +87,7 @@ const dealerDetail: NextPage = ({ initialInput, initialComment, ...props }: any)
 				<Stack className={'container'}>
 					<Stack className={'dealer-info'}>
 						<img
-							src={dealer?.memberImage ? `${REACT_APP_API_URL}/${dealer?.memberImage}` : '/img/profile/defaultUser.svg'}
+							src={dealer?.memberImage ? `${REACT_API_URL}/${dealer?.memberImage}` : '/img/profile/defaultUser.svg'}
 							alt=""
 						/>
 						<Box
@@ -107,7 +107,7 @@ const dealerDetail: NextPage = ({ initialInput, initialComment, ...props }: any)
 							{dealerVehicles.map((vehicle: vehicle) => {
 								return (
 									<div className={'wrap-main'} key={vehicle?._id}>
-										<vehicleBigCard vehicle={vehicle} key={vehicle?._id} />
+										<VehicleBigCard vehicle={vehicle} key={vehicle?._id} />
 									</div>
 								);
 							})}
